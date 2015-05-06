@@ -12,7 +12,6 @@
     "codeception/codeception": "*"
   },
   "require": {
-    "php": ">=5.4",
-    "drroach/logintemplate": "dev-master"
+    "php": ">=5.4"
   }
 }
