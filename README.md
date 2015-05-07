@@ -146,6 +146,32 @@ You can require desired templates that you or other people have made and use the
 
 Using composer to load in third party templates means that version control of these templates is very easy and getting updates is also super simple. Because these are just other templates, they can also be made very powerful. Another benefit of including templates this way, is that you wont have to rewrite code for seperate projects as you can just use the same html as an example.
 
+###JavaScript Templates
+
+You can load your templates and add them to your page using JavaScript too. There are a couple of ways to go about this, you can "populate" the JavaScript using the `Templator::populateJs()` PHP method to then include a template later in JavaScript like so:
+
+```JavaScript
+<script>
+    Templator.load('template', null, $('#targetElement'));
+</script>
+```
+
+Or you can pass data straight into the JavaScript implementation of `load` like so:
+
+```JavaScript
+<script>
+    Templator.load(
+        'template',
+        {
+            variable: "Variable Value"
+        },
+        $('#targetElement')
+    );
+</script>
+```
+
+For reference, `Templator::populateJs()` take in a key value array where the key is the variable name and the value is the data.
+
 ###Raw Code
 
 Something that makes this template engine stand out is that you can add raw code to the file
