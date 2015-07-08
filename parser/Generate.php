@@ -162,6 +162,9 @@ class Generate
     public static function storeTemplate($template, $result)
     {
         $store = "<!-- " . time() . " -->\n\n\n" . $result;
+        if (!Cache::cacheFolderExists()) {
+            Cache::createCacheFolder();
+        }
         file_put_contents(dirname(__DIR__) . '/cache/' . $template . '.php', $store);
     }
 

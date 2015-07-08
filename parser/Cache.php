@@ -93,4 +93,22 @@ class Cache
             return false;
         }
     }
+
+    /**
+     * Check to make sure that the cache folder actually exists
+     * @return bool
+     */
+    public static function cacheFolderExists()
+    {
+        return is_dir(__DIR__ . '/../cache');
+    }
+
+    /**
+     * Create the cache folder if it doesn't already exist
+     * @return bool
+     */
+    public static function createCacheFolder()
+    {
+        return mkdir(__DIR__ . '/../cache');
+    }
 }
