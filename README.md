@@ -124,7 +124,16 @@ You can also add `else` statements to your foreach loops. These sections will be
 {{ endwhile; }}
 ```
 
-While loops are half implemented as you can see and do need to be slightly hacked to prevent infinite loops. This is going to be changed in the future as soon as the the best way to work around this has been decided on.
+While loops are half implemented. You can increment or decrement variables like so:
+
+```
+{{ count++ }}
+{{ ++count }}
+{{ count-- }}
+{{ --count }}
+```
+
+But as of yet, you cannot change a variables number by more than one without using pure PHP. This is likely going to be changed in the next release.
 
 ###Includes
 
