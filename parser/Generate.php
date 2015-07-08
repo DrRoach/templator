@@ -150,6 +150,15 @@ class Generate
         return $line;
     }
 
+    public static function parseIncrement($line)
+    {
+        $echo = FindIncrement::run($line);
+        if (is_array($echo)) {
+            $line = ParseIncrement::run($echo);
+        }
+        return $line;
+    }
+
     public static function storeTemplate($template, $result)
     {
         $store = "<!-- " . time() . " -->\n\n\n" . $result;
