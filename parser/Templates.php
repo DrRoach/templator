@@ -20,6 +20,9 @@ class Templates
     public static function getComposerPackages()
     {
         $return = [];
+        if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/vendor')) {
+            return $return;
+        }
         $packages = scandir($_SERVER['DOCUMENT_ROOT'] . '/vendor');
         foreach($packages as $key => $package) {
             if(strpos($package, '.') !== false || $package == 'bin' || !is_dir($_SERVER['DOCUMENT_ROOT'] . '/vendor/' . $package)) {
