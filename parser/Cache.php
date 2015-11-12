@@ -76,6 +76,9 @@ class Cache
      */
     public static function loadCacheFile($template, $vars)
     {
+        if ($vars === null) {
+            $vars = [];
+        }
         extract($vars);
         include_once __DIR__ . '/../cache/' . $template . '.php';
     }
