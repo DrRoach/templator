@@ -51,6 +51,9 @@ class Templator
         }
         self::checkTemplateExists($template);
         $templateHtml = self::getTemplateHtml($template);
+        if ($vars === null) {
+            $vars = [];
+        }
         extract($vars);
         include Generate::parse($templateHtml, $template);
     }
