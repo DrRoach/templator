@@ -165,6 +165,18 @@ class Generate
         if (!Cache::cacheFolderExists()) {
             Cache::createCacheFolder();
         }
+        //Check to see if the file is being saved in a folder
+        if (strpos($template, '/')) {
+            //Check to make sure folder exists
+            $tempSplit = explode('/', $template);
+            $dirStructure = '';
+            for ($i = 0; $i < sizeof($tempSplit) - 1; $i++) {
+                $dirStructure .= $tempSplit[$i];
+            }
+            if (!is_dir(dirname(__DIR__) . '/cache/' . $dirStructure)) {
+                mkdir(dirname(__DIR__) . '/cache/' . $dirStructure);
+            }
+        }
         file_put_contents(dirname(__DIR__) . '/cache/' . $template . '.php', $store);
     }
 
