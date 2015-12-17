@@ -42,9 +42,16 @@ class Templator
     public static function load($template, $vars, $ajax = false)
     {
         //Get the location of the templates folder
-        self::$templateLocation = file_get_contents(__DIR__ . '/setup.json');
-        self::$templateLocation = json_decode(self::$templateLocation);
-        self::$templateLocation = self::$templateLocation->templates;
+        $setup['templates'] = file_get_contents(__DIR__ . '/setup.json');
+        $setup['templates'] = json_decode($setup['templates']);
+        $setup['templates'] = $setup['templates']->templates;
+        $dir = explode('/', __DIR__);
+        if ($dir[sizeof($dir)-1] == "templator" && $dir[sizeof($dir)-2] == "drroach" && $dir[sizeof($dir)-3] == "vendor") {
+            self::$templateLocation = dirname(dirname(dirname(__DIR__))) . $setup['templates'] . 'templates/' . $template . '.tpl';
+        } else {
+            self::$templateLocation = dirname(__DIR__) . '/templates/' . $template . '.tpl';
+
+        }
         
         self::$definedVars = $vars;
         //Check to see if a cached file already exists
@@ -80,7 +87,7 @@ class Templator
      */
     public static function checkTemplateExists($template)
     {
-        if (!file_exists(self::$templateLocation . '/templates/' . $template . '.tpl')) {
+        if (!file_exists(self::$templateLocation)) {
             //Check to see if the template is a composer file
             if (Templates::composerTemplate($template) === false) {
                 throw new Exception("The template '$template' doesn't exist");
@@ -96,7 +103,7 @@ class Templator
     public static function getTemplateHtml($template)
     {
         if (!Templates::$composerFile) {
-            return file_get_contents(dirname(__DIR__) . '/templates/' . $template . '.tpl');
+            return file_get_contents(self::$templateLocation);
         } else {
             return file_get_contents(dirname(__DIR__) . '/vendor/' . Templates::$composerFile);
         }

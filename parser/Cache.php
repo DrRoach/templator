@@ -62,7 +62,7 @@ class Cache
     public static function getModifiedTime($template)
     {
         if (Templates::composerTemplate($template) === false) {
-            return filemtime(dirname(__DIR__) . '/../templates/' . $template . '.tpl');
+            return filemtime(Templator::$templateLocation);
         } else {
             return filemtime($_SERVER['DOCUMENT_ROOT'] . '/vendor/' . Templates::$composerFile);
         }
