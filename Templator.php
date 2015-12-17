@@ -29,6 +29,7 @@ class Templator
      * down to sub Templator::load() calls
      */
     public static $definedVars = [];
+    public static $templateLocation = "";
 
     /**
      * First function called to begin loading template
@@ -40,6 +41,11 @@ class Templator
      */
     public static function load($template, $vars, $ajax = false)
     {
+        //Get the location of the templates folder
+        self::$templateLocation = file_get_contents(__DIR__ . '/setup.json');
+        self::$templateLocation = json_decode(self::$templateLocation);
+        self::$templateLocation = self::$templateLocation->templates;
+        
         self::$definedVars = $vars;
         //Check to see if a cached file already exists
         if (Cache::cacheExists($template)) {
@@ -74,7 +80,7 @@ class Templator
      */
     public static function checkTemplateExists($template)
     {
-        if (!file_exists(dirname(__DIR__) . '/templates/' . $template . '.tpl')) {
+        if (!file_exists(self::$templateLocation . '/templates/' . $template . '.tpl')) {
             //Check to see if the template is a composer file
             if (Templates::composerTemplate($template) === false) {
                 throw new Exception("The template '$template' doesn't exist");
