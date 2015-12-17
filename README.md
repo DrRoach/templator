@@ -14,6 +14,8 @@ Clone this repo into the project that you want to use it in then `require` the `
 Templator::load('HelloWorld', get_defined_vars());
 ```
 
+If your templates folder isn't in your root directory, you can set it's path using the `setup.json` file. Just make sure that the path that you enter ends with `/`.
+
 Example Syntax
 ---
 
