@@ -19,7 +19,7 @@ If your templates folder isn't in your root directory, you can set it's path usi
 Example Syntax
 ---
 
-###Echo
+### Echo
 
 ```
 {{hello}}
@@ -27,7 +27,7 @@ Example Syntax
 
 And that's all that you need!
 
-####Escaping
+#### Escaping
 
 By default, all echos are escaped to protect you from potential XSS but you can stop this by adding `|e` or `|escape` like so:
 
@@ -51,7 +51,7 @@ You can use `{{{` and `}}}` to escape variables too. Like this:
 
 Which will put the raw code onto your page including any HTML.
 
-###If
+### If
 
 ```
 {{ if(variable == true) }}
@@ -83,7 +83,7 @@ And ending your `if` is just as simple:
 
 The spacing between the `{{` and `}}` doesn't matter!
 
-###Foreach
+### Foreach
 
 ```
 {{ foreach(array as value) }}
@@ -117,7 +117,7 @@ You can also add `else` statements to your foreach loops. These sections will be
 {{ endforeach; }}
 ```
 
-###While
+### While
 
 ```
 {{ while(count < 10) }}
@@ -137,7 +137,7 @@ While loops are half implemented. You can increment or decrement variables like 
 
 But as of yet, you cannot change a variables number by more than one without using pure PHP. This is likely going to be changed in the next release.
 
-###Includes
+### Includes
 
 ```
 {{ include(header) }}
@@ -147,7 +147,7 @@ Includes are now fully supported and all included files are also cached. Include
 
 Includes work exactly as you'd expect. Whatever file you include is loaded into your code exactly where you load it. Any variables that you pass into your "parent" template are passed onto your "child" template automatically.
 
-###Including templates via composer
+### Including templates via composer
 
 You can require desired templates that you or other people have made and use them straight in your template without having to move them around or worry about them at all using the include code like so:
 
@@ -157,7 +157,7 @@ You can require desired templates that you or other people have made and use the
 
 Using composer to load in third party templates means that version control of these templates is very easy and getting updates is also super simple. Because these are just other templates, they can also be made very powerful. Another benefit of including templates this way, is that you wont have to rewrite code for seperate projects as you can just use the same html as an example.
 
-###JavaScript Templates
+### JavaScript Templates
 
 You can load your templates and add them to your page using JavaScript too. There are a couple of ways to go about this, you can "populate" the JavaScript using the `Templator::populateJs()` PHP method to then include a template later in JavaScript like so:
 
@@ -183,7 +183,7 @@ Or you can pass data straight into the JavaScript implementation of `load` like 
 
 For reference, `Templator::populateJs()` take in a key value array where the key is the variable name and the value is the data.
 
-###Raw Code
+### Raw Code
 
 Something that makes this template engine stand out is that you can add raw code to the file
 
@@ -191,5 +191,5 @@ Something that makes this template engine stand out is that you can add raw code
 <?php var_dump($_SESSION']); ?>
 ```
 
-##The Goal
+## The Goal
 The end goal is to create a fast and flexible template engine that can be quickly picked up by anyone. It would work best for teams of front and back end developers where the front end devs aren't completely comfortable writing PHP or JavaScript logic.
