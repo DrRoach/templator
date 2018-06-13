@@ -7,6 +7,9 @@ Templator is a small, quick and powerful templating engine that's easy for anyon
 
 With it's own built in caching system, you don't need to worry about loading times and as it is compiled down into PHP, you can add anything that it supports.
 
+## This project has moved
+This project has moved to [Gitlab](https://gitlab.com/DrRoach/templator).
+
 Installing
 ---
 Clone this repo into the project that you want to use it in then `require` the `templator/Templator.php` file. Once you've done that, add your templates to `/templates` with the `.tpl` file extension and load them into your views like so:
